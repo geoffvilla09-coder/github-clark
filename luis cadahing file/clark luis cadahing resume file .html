@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clark Cadahing – Resume</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #000; /* Black background */
+      padding: 40px;
+    }
+
+    /* MAIN RESUME CONTAINER */
+    .resume-container {
+      background: linear-gradient(135deg, #0b1d35, #112e55, #0a1c33);
+      width: 900px;
+      margin: auto;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 204, 255, 0.4);
+      position: relative;
+      animation: floatCard 5s ease-in-out infinite;
+    }
+
+    @keyframes floatCard {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* BLUE NEON STICKERS */
+    .sticker {
+      position: absolute;
+      width: 80px;
+      opacity: 0.8;
+      filter: drop-shadow(0 0 10px cyan);
+    }
+
+    .sticker1 { top: -20px; left: -20px; }
+    .sticker2 { bottom: -20px; right: -20px; }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .name-block {
+      max-width: 60%;
+    }
+
+    .firstname {
+      font-size: 60px;
+      font-weight: 700;
+      color: #4dd0ff;
+      text-shadow: 0 0 10px #00c6ff;
+      line-height: 1;
+    }
+
+    .lastname {
+      font-size: 45px;
+      font-weight: 700;
+      color: #00a4d6;
+      margin-top: -10px;
+      text-shadow: 0 0 10px #00c6ff;
+    }
+
+    .role {
+      margin-top: 8px;
+      font-size: 16px;
+      color: #cce7ff;
+      font-weight: 500;
+    }
+
+    .contact p {
+      font-size: 14px;
+      margin-top: 3px;
+      color: #d6ebff;
+    }
+
+    .photo-block img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 4px solid #00c6ff;
+      box-shadow: 0 0 15px #00c6ff;
+    }
+
+    /* SECTION BOXES */
+    .section {
+      margin-top: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      border-radius: 12px;
+      border-left: 5px solid #00c6ff;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 0 12px rgba(0, 200, 255, 0.2);
+    }
+
+    .section h2 {
+      font-size: 22px;
+      color: #4dd0ff;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      line-height: 1.6;
+      font-size: 15px;
+      color: #e4f6ff;
+    }
+
+    /* TWO COLUMNS */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .skills-list li {
+      margin-bottom: 12px;
+      line-height: 1.5;
+      color: #e4f6ff;
+    }
+
+    .skills-list strong {
+      color: #4dd0ff;
+    }
+
+    /* WORK EXPERIENCE HEADERS */
+    h3 {
+      color: #78dbff;
+      margin-bottom: 5px;
+      margin-top: 10px;
+    }
+
+    /* EDUCATION */
+    .edu-item h3 {
+      font-size: 16px;
+      color: #78dbff;
+      font-weight: 600;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div class="resume-container">
+
+  <!-- STICKERS -->
+  <img src="https://cdn-icons-png.flaticon.com/512/545/545666.png" class="sticker sticker1">
+  <img src="https://cdn-icons-png.flaticon.com/512/545/545680.png" class="sticker sticker2">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="name-block">
+      <h1 class="firstname">CLARK</h1>
+      <h1 class="lastname">CADAHING</h1>
+      <p class="role">STUDENT DESIGNER</p>
+
+      <div class="contact">
+        <p><strong>PHONE:</strong> +0950-039-9184</p>
+        <p><strong>EMAIL:</strong> CLARKCADAHING06@GMAIL.COM</p>
+        <p><strong>WEBSITE:</strong> clarkcadahing.com</p>
+      </div>
+    </div>
+
+    <div class="photo-block">
+      <img src="Snapchat-2142613496.jpg" alt="Clark Photo">
+    </div>
+  </header>
+
+  <!-- PROFILE SUMMARY -->
+  <section class="section">
+    <h2>PROFILE SUMMARY</h2>
+    <p>
+      I am a dedicated and adaptable individual with experience in logistics,
+      customer service, and community work. I take pride in being organized,
+      reliable, and focused on delivering quality results. I am eager to grow
+      professionally and contribute positively to any team I join.
+    </p>
+  </section>
+
+  <!-- SKILLS & WORK EXPERIENCE -->
+  <section class="section two-column">
+
+    <!-- Skills -->
+    <div>
+      <h2>SKILLS</h2>
+      <ul class="skills-list">
+        <li><strong>Organizational Skills:</strong> I like keeping things arranged so I can work faster and easier. It helps me stay focused and avoid confusion.</li>
+        <li><strong>Attention to Detail:</strong> I notice small things that others might miss, helping me produce clean and accurate work.</li>
+        <li><strong>Adaptability:</strong> I adjust quickly when plans change and stay calm in any situation.</li>
+        <li><strong>Time Management:</strong> I balance tasks efficiently so I can finish on time without rushing.</li>
+        <li><strong>Teamwork:</strong> I enjoy working with others and believe teamwork leads to better results.</li>
+        <li><strong>Communication Skills:</strong> I express myself clearly and listen well to avoid misunderstandings.</li>
+        <li><strong>Dependability:</strong> People can count on me to complete tasks honestly and consistently.</li>
+      </ul>
+    </div>
+
+    <!-- Work Experience -->
+    <div>
+      <h2>WORK EXPERIENCE</h2>
+
+      <h3>LOGISTICS / STOCK SUPPORT</h3>
+      <p>Helped receive, organize, and store items while keeping inventory in order.</p>
+
+      <h3>STORE ASSISTANT / RETAIL SUPPORT</h3>
+      <p>Assisted customers, arranged products, and maintained a clean store area.</p>
+    </div>
+
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section">
+    <h2>EDUCATION</h2>
+
+    <div class="edu-item">
+      <h3>SENIOR HIGH SCHOOL — GAS (2020–2022)</h3>
+      <p>Rizal National High School</p>
+      <p>Completed the GAS program, gaining broad academic skills and strong adaptability in various fields.</p>
+    </div>
+
+    <div class="edu-item">
+      <h3>JUNIOR HIGH SCHOOL (2016–2020)</h3>
+      <p>Rizal National High School</p>
+      <p>Built a solid academic foundation and developed discipline, teamwork, and time management skills.</p>
+    </div>
+
+  </section>
+
+</div>
+
+</body>
+</html>

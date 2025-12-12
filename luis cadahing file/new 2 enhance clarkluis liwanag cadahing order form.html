@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clark’s Pinoy Spicy Chicken Order Form</title>
+<style>
+  body { background-size: cover; background-repeat: no-repeat; font-family: Arial, sans-serif; padding: 20px; color: #222; }
+  .container { background: rgba(255,255,255,0.9); width: 600px; padding: 20px; border-radius: 10px; margin: auto; }
+  label { font-weight: bold; display: block; margin-top: 10px; }
+  .section-title { font-size: 20px; font-weight: bold; margin-top: 20px; }
+  input[type="text"], input[type="number"], textarea { width: 100%; padding: 8px; margin-bottom: 12px; }
+  .checkbox-group p { margin: 6px 0; }
+  #totalDisplay { font-size: 22px; margin-top: 20px; font-weight: bold; color: #b30000; }
+  #receipt { margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 10px; }
+  .btn { padding: 10px 20px; background: #ff4500; border: none; color: white; font-size: 18px; cursor: pointer; border-radius: 5px; margin-top: 15px; margin-right: 10px; }
+  #thankYouMessage { margin-top: 20px; padding: 15px; background: #e0ffe0; border: 1px solid #00a000; border-radius: 10px; display: none; }
+  @media print {
+    body * { visibility: hidden; }
+    #receipt, #receipt * { visibility: visible; }
+    #receipt { position: absolute; top: 0; left: 0; width: 100%; }
+    .no-print { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>Clark’s Pinoy Spicy Chicken ORDER FORM</h2>
+
+<label>First Name:</label>
+<input type="text" id="Fname">
+
+<label>Last Name:</label>
+<input type="text" id="Lname">
+
+<label>Contact Number:</label>
+<input type="text" id="Cnum">
+
+<label>Preferred Delivery Date:</label>
+<input type="text" id="Ddate">
+
+<div class="section-title">ORDER DETAILS</div>
+
+<label>SIZE:</label>
+<p>
+  <input type="radio" name="size" class="size" value="0" data-name="Small"> Small<br>
+  <input type="radio" name="size" class="size" value="50" data-name="Medium"> Medium<br>
+  <input type="radio" name="size" class="size" value="100" data-name="Large"> Large
+</p>
+
+<div class="section-title">SIGNATURE DISHES</div>
+<div class="checkbox-group">
+  <p><input type="checkbox" class="item" value="120" data-name="Classic Spicy Chicken"> Classic Spicy Chicken – ₱120</p>
+  <p><input type="checkbox" class="item" value="150" data-name="Spicy Chicken Wings"> Spicy Chicken Wings – ₱150</p>
+  <p><input type="checkbox" class="item" value="130" data-name="Spicy Chicken Burger"> Spicy Chicken Burger – ₱130</p>
+  <p><input type="checkbox" class="item" value="140" data-name="Spicy Chicken Rice Bowl"> Spicy Chicken Rice Bowl – ₱140</p>
+  <p><input type="checkbox" class="item" value="160" data-name="Cheesy Spicy Chicken"> Cheesy Spicy Chicken – ₱160</p>
+</div>
+
+<label>Add-ons:</label>
+<p>
+  <input type="checkbox" class="addon" value="20" data-name="Extra Rice"> Extra Rice – ₱20<br>
+  <input type="checkbox" class="addon" value="30" data-name="Softdrinks"> Softdrinks – ₱30<br>
+  <input type="checkbox" class="addon" value="40" data-name="Fries"> Fries – ₱40
+</p>
+
+<label>PAYMENT METHOD:</label>
+<p>
+  <input type="radio" name="payment" value="Cash" id="payCash"> Cash
+  <input type="radio" name="payment" value="Gcash"> Gcash
+  <input type="radio" name="payment" value="Credit Card"> Credit Card
+</p>
+
+<div id="cashInput" style="display:none;">
+  <label>Enter Cash Amount:</label>
+  <input type="number" id="cashAmount" min="0">
+</div>
+
+<div id="totalDisplay">Total: ₱0</div>
+
+<div id="receipt">
+  <h3>Receipt</h3>
+  <div id="receiptContent">No items selected.</div>
+</div>
+
+<div id="thankYouMessage"></div>
+
+<div class="no-print">
+  <button class="btn" id="confirmBtn">Confirm Order</button>
+  <button class="btn" id="printBtn" disabled>Print Receipt</button>
+</div>
+</div>
+
+<form action="#" method="post">
+  <label>Additional Notes:</label><br>
+  <textarea cols="20" rows="5" placeholder="Enter your comments..."></textarea><br><br>
+
+  <label for="Sname">[Submit Order]:</label><br>
+  <input type="submit" value="Submit">
+</form>
+
+ 
+ <p><img src="clark122.JPG"125px" height="125px"></p>
+ <p>&nbsp;Submitted by: CLARK L. CADAHING </p>
+ <p>&nbsp;Submitted TO: SHERWIN SANGALANG </p>
+ <p>&nbsp;Section: BSIT-1F </p>
+</body>
+</html>
+
+<script>
+const items = document.querySelectorAll('.item');
+const addons = document.querySelectorAll('.addon');
+const sizes = document.querySelectorAll('.size');
+const totalDisplay = document.getElementById('totalDisplay');
+const receiptContent = document.getElementById('receiptContent');
+const confirmBtn = document.getElementById('confirmBtn');
+const printBtn = document.getElementById('printBtn');
+const thankYouDiv = document.getElementById('thankYouMessage');
+const payCash = document.getElementById('payCash');
+const cashInput = document.getElementById('cashInput');
+const cashAmount = document.getElementById('cashAmount');
+
+function calculateTotalAndReceiptLines() {
+  let total = 0;
+  let lines = [];
+
+  const selectedSize = document.querySelector('.size:checked');
+  if (selectedSize) {
+    total += parseInt(selectedSize.value);
+    lines.push({ name: selectedSize.dataset.name + " Size", price: parseInt(selectedSize.value) });
+  }
+
+  items.forEach(i => {
+    if (i.checked) {
+      total += parseInt(i.value);
+      lines.push({ name: i.dataset.name, price: parseInt(i.value) });
+    }
+  });
+
+  addons.forEach(a => {
+    if (a.checked) {
+      total += parseInt(a.value);
+      lines.push({ name: a.dataset.name, price: parseInt(a.value) });
+    }
+  });
+
+  return { total, lines };
+}
+
+function renderReceipt() {
+  const { total, lines } = calculateTotalAndReceiptLines();
+  totalDisplay.innerText = `Total: ₱${total}`;
+
+  if (lines.length === 0) {
+    receiptContent.innerHTML = "No items selected.";
+  } else {
+    const html =
+      lines.map(l => `<div>${l.name} – ₱${l.price}</div>`).join('') +
+      `<hr><strong>Total: ₱${total}</strong>` +
+      (payCash.checked ? `<div><strong>Change: ₱${(cashAmount.value - total) > 0 ? (cashAmount.value - total) : 0}</strong></div>` : "");
+
+    receiptContent.innerHTML = html;
+  }
+
+  return { total, lines };
+}
+
+items.forEach(i => i.addEventListener('change', renderReceipt));
+addons.forEach(a => a.addEventListener('change', renderReceipt));
+sizes.forEach(s => s.addEventListener('change', renderReceipt));
+
+document.querySelectorAll('input[name="payment"]').forEach(p => {
+  p.addEventListener('change', () => {
+    cashInput.style.display = payCash.checked ? "block" : "none";
+    renderReceipt();
+  });
+});
+
+confirmBtn.addEventListener('click', () => {
+  const { total, lines } = renderReceipt();
+  const firstName = document.getElementById('Fname').value;
+  const lastName = document.getElementById('Lname').value;
+  const contact = document.getElementById('Cnum').value;
+  const date = document.getElementById('Ddate').value;
+
+  const payment = document.querySelector('input[name="payment"]:checked');
+  const payMethod = payment ? payment.value : "Not selected";
+
+  let cashGiven = 0;
+  let change = 0;
+
+  if (payMethod === "Cash") {
+    cashGiven = parseFloat(cashAmount.value) || 0;
+    change = cashGiven - total;
+  }
+
+  let summary = `<h3>Thank you, ${firstName} ${lastName}!</h3>`;
+  summary += `<div>Contact: ${contact}</div>`;
+  summary += `<div>Delivery Date: ${date}</div>`;
+  summary += `<div>Payment Method: ${payMethod}</div>`;
+
+  if (payMethod === "Cash") {
+    summary += `<div>Cash Given: ₱${cashGiven}</div>`;
+    summary += `<div><strong>Total Change: ₱${change < 0 ? 0 : change}</strong></div>`;
+  }
+
+  summary += `<h4>Your Order:</h4><ul>`;
+  lines.forEach(l => {
+    summary += `<li>${l.name} – ₱${l.price}</li>`;
+  });
+  summary += `</ul><strong>Total: ₱${total}</strong>`;
+
+  thankYouDiv.innerHTML = summary;
+  thankYouDiv.style.display = "block";
+  printBtn.disabled = false;
+});
+
+printBtn.addEventListener('click', () => {
+  window.print();
+});
+
+renderReceipt();
+</script>
+
+</body>
+</html>
